@@ -1,0 +1,94 @@
+
+@font-face {
+    font-family: 'Heebo';
+    src: url(https://cdn.discordapp.com/attachments/553260308475674688/712277903127216138/BAHNSCHRIFT.TTF);
+}
+
+html {
+	color: #34495e;
+	font-family: 'Heebo';
+}
+
+
+#wrap {
+	width: 58vw;
+	min-height: 185px;
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgb(26, 26, 26, 0.8);
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.7), 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.5);
+	border-radius: 2px;
+}
+
+p {
+	float: left;
+	margin-left: 15px;
+	padding-left: 10px;
+	font-size: 1.05vw;
+}
+
+.header {
+	font-family: 'Heebo';
+	height: 175px;
+	font-size:large;
+	width: auto;
+	
+	background-image: url("https://cdn.discordapp.com/attachments/644631964774694942/712353960589000774/unknown.png"); 	
+	background-size: cover;
+	
+	padding-right: 0px;
+	border-top-left-radius: 5px 2px;
+	border-top-right-radius: 5px 2px;
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 1.0);
+}
+.header span {
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 1.0);
+}
+
+.jobs {
+	font-family: 'Heebo';
+	padding-top: 68px;
+	text-align: center;
+
+	padding-left: 34%;
+	height: 8vw;
+	width: 100%;
+	border-top-left-radius: 5px 2px;
+	border-top-right-radius: 5px 2px;
+}
+
+.jobs p {
+	font-family: 'Heebo';
+}
+
+table {
+	text-align: left;
+	color: white;
+}
+
+th, td {
+	padding-left: 25px;
+}
+
+th {
+	padding-top: 15px;
+	height: 40px;
+}
+
+tr {
+	font-size: 0.7vw;
+	font-family: 'Heebo';
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+tr.heading {
+	font-size: 1vw;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.serverinfo {
+	font-size: 0.55vw;
+	text-align: center;
+}

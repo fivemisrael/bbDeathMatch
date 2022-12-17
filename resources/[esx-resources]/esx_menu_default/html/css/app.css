@@ -1,0 +1,165 @@
+/*
+* Import Fonts
+*/
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+
+/*
+* Loqrin Edit
+*/
+.loqedit-head-logo
+{
+	background-image: url("../imgs/head-logo.png");
+	height: 105px;
+	width: auto;
+}
+
+.menu 
+{
+	font-family: 'Oswald', sans-serif;
+	width: 430px;
+	color: #fff;
+	position: absolute;
+}
+
+.menu.align-left 
+{
+	left: 40;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.menu.align-top-left 
+{
+	left: 40;
+	top: 40;
+}
+
+.menu.align-top 
+{
+	left: 50%;
+	top: 40;
+	transform: translate(-50%, 0);
+}
+
+.menu.align-top-right 
+{
+	right: 10;
+	top: 40;
+}
+
+.menu.align-right 
+{
+	right: 40;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.menu.align-bottom-right 
+{
+	right: 40;
+	bottom: 40;
+}
+
+.menu.align-bottom 
+{
+	left: 50%;
+	bottom: 40;
+	transform: translate(-50%, 0);
+}
+
+.menu.align-bottom-left 
+{
+	left: 40;
+	bottom: 40;
+}
+
+.menu.align-center 
+{
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.menu .head 
+{	
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	text-align: center;
+	line-height: 48px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 32pt;
+    font-style: oblique;
+    font-weight: 400;
+	color: rgb(236, 240, 241);
+    
+    text-shadow: 1px 1px black;
+
+    width: auto;
+}
+
+.menu .menu-items 
+{
+	max-height: 600px;
+	overflow-y: hidden;
+}
+
+.menu .menu-items .menu-item
+{
+	padding-left: 15px;
+	padding-right: 15px;
+
+	display: block;
+	line-height: 32px;
+
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
+    font-size: 14pt;
+    font-style: normal;
+    font-weight: 300;
+	color: rgb(236, 240, 241);
+	
+	height: 35px;
+}
+
+.menu .menu-items .menu-item:nth-child(odd)
+{
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu .menu-items .menu-item:nth-child(even)
+{
+	background-color: rgba(0, 0, 0, 0.68);
+}
+
+.menu .menu-items .menu-item.selected:before
+{
+	/*font-size: 24pt;*/
+	font-style: normal;
+
+	content: '\00bb \2002';
+}
+
+.menu .menu-items .menu-item.selected
+{
+	background-color: rgb(236, 240, 241) !important;
+    color: black;
+	font-weight: 400;
+	/*font-style: oblique;*/
+}
+
+#loqedit-menu-directions
+{
+	padding-top: 8.5px;
+
+    text-align: center;
+    font-size: 18pt;
+    color: rgb(236, 240, 241);
+
+	background-color: rgba(0, 0, 0, 0.8);
+	
+	height: 35px;
+	width: 100%;
+}

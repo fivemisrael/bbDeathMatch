@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i" rel="stylesheet">
+    <script type="text/javascript" src="nui://game/ui/jquery.js"></script>
+    <script type="text/javascript" src="js/RadialMenu.js"></script>
+    <script type="text/javascript" src="js/all.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/RadialMenu.css">
+    <link type="text/css" rel="stylesheet" href="css/all.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let menuKeybind = ""
+            let resourceName = ""
+            let menu = null;
+            window.addEventListener('message', function (event) {
+                let eventData = event.data;
+                menuKeybind = eventData.menuKeyBind;
+                resourceName = eventData.resourceName;
+                if (eventData.state === "show") {
+                    $('#container').append(`<div id="navMenu"></div>`);
+                    let style = eventData.rootStyle;
+                    menu = new RadialMenu({
+                        parent: document.getElementById('navMenu'),
+                        size: 450,
+                        closeOnClick: true,
+                        menuItems: eventData.data,
+                        onClick: function (item) {
+                            if(item.functionName !== 'undefined') {
+                                $.post('http://'+resourceName+'/triggerAction', JSON.stringify({action: item.functionName, parameters: item.functionParameters}));
+                            }
+                        }
+                    });
+                    menu.open();
+
+                } else if (eventData.state === 'destroy') {
+                    $("#navMenu").remove();
+                    menu.destroy();
+                }
+            });
+            window.addEventListener("keyup", function onEvent(event) {
+                // Close menu when key is released
+                if (event.key === menuKeybind) {
+                    $.post(`http://${resourceName}/closemenu`, JSON.stringify({}));
+                }
+            });
+        });
+
+    </script>
+    <style>
+        @font-face {
+          font-family: heebo;
+            src: url(https://cdn.discordapp.com/attachments/548137697382760460/589533986682961979/Heebo-Regular.ttf);
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            font-family: "heebo";
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menuHolder {
+            font-size: 10px;
+        }
+
+        #icons {
+            display: none;
+            filter:url(#drop-shadow);
+        }
+    </style>
+</head>
+
+<body>
+    <i data-fa-symbol="more" class="fa fa-ellipsis-h"></i>
+
+    <i data-fa-symbol="globe-europe" class="fas fa-globe-europe"></i>
+    <i data-fa-symbol="car" class="fas fa-car"></i>
+    <i data-fa-symbol="walking" class="fas fa-walking"></i>
+    <i data-fa-symbol="eye-lash" class="fas fa-eye-slash"></i>
+
+    <i data-fa-symbol="fa-skull" class="fas fa-skull"></i>
+
+    <!-- Impound -->
+    <i data-fa-symbol="impound-vehicle" class="fas fa-lock" ></i>
+
+    <!-- Oxygen -->
+    <i data-fa-symbol="oxygen-mask" class="fas fa-mask" ></i>
+
+    <!-- Animations -->
+    <i data-fa-symbol="animation-default" class="far fa-meh"></i>
+    <i data-fa-symbol="animation-brave" class="fab fa-wolf-pack-battalion"></i>
+    <i data-fa-symbol="animation-sassy" class="fas fa-kiss"></i>
+    <i data-fa-symbol="animation-more" class="fas fa-ellipsis-h"></i>
+    <i data-fa-symbol="animation-chichi" class="fas fa-yin-yang"></i>
+    <i data-fa-symbol="animation-maneater" class="fas fa-grin-tongue-wink"></i>
+    <i data-fa-symbol="animation-shady" class="fas fa-user-ninja"></i>
+    <i data-fa-symbol="animation-swagger" class="fas fa-blind"></i>
+    <i data-fa-symbol="animation-money" class="fas fa-money-bill-alt"></i>
+    <i data-fa-symbol="animation-hobo" class="fas fa-dumpster"></i>
+    <i data-fa-symbol="animation-nonchalant" class="fas fa-meh"></i>
+    <i data-fa-symbol="animation-alien" class="fab fa-reddit-alien"></i>
+    <i data-fa-symbol="animation-posh" class="fas fa-crown"></i>
+    <i data-fa-symbol="animation-sad" class="fas fa-frown"></i>
+    <i data-fa-symbol="animation-tough" class="fas fa-dumbbell"></i>
+    <i data-fa-symbol="animation-injured" class="fas fa-crutch"></i>
+    <i data-fa-symbol="animation-tipsy" class="fas fa-beer"></i>
+    <i data-fa-symbol="animation-business" class="fas fa-briefcase"></i>
+    <i data-fa-symbol="animation-hurry" class="fas fa-running"></i>
+
+    <!-- K9 -->
+    <i data-fa-symbol="k9" class="fas fa-paw"></i>
+    <i data-fa-symbol="k9-spawn" class="fas fa-plus"></i>
+    <i data-fa-symbol="k9-dismiss" class="fas fa-times-circle"></i>
+    <i data-fa-symbol="k9-follow" class="fas fa-hotdog"></i>
+    <i data-fa-symbol="k9-vehicle" class="fas fa-truck-pickup"></i>
+    <i data-fa-symbol="k9-sit" class="fas fa-couch"></i>
+    <i data-fa-symbol="k9-lay" class="fas fa-bed"></i>
+    <i data-fa-symbol="k9-stand" class="fas fa-dog"></i>
+    <i data-fa-symbol="k9-sniff" class="fas fa-search"></i>
+    <i data-fa-symbol="k9-sniff-vehicle" class="fas fa-biohazard"></i>
+    <i data-fa-symbol="k9-huntfind" class="fas fa-search-location"></i>
+    
+
+    <!-- Police Dead -->
+    <i data-fa-symbol="police-dead" class="fas fa-sad-cry"></i>
+    <!-- EMS Dead -->
+    <i data-fa-symbol="ems-dead" class="fas fa-sad-cry"></i>
+
+    <!-- General -->
+    <i data-fa-symbol="general" class="fas fa-cog"></i>
+    <i data-fa-symbol="general-emotes" class="fas fa-meh-blank"></i>
+    
+    <i data-fa-symbol="general-apart-givekey" class="fas fa-building"></i>
+    <i data-fa-symbol="general-ask-for-train" class="fas fa-train"></i>
+    <i data-fa-symbol="general-check-over-self" class="fas fa-user-check"></i>
+    <i data-fa-symbol="general-check-over-target" class="fas fa-diagnoses"></i>
+    <i data-fa-symbol="general-check-vehicle" class="fas fa-wrench"></i>
+    <i data-fa-symbol="general-escort" class="fas fa-user-friends"></i>
+    <i data-fa-symbol="general-put-in-veh" class="fas fa-sign-in-alt"></i>
+    <i data-fa-symbol="general-unseat-nearest" class="fas fa-sign-out-alt"></i>
+    <i data-fa-symbol="general-flip-vehicle" class="fas fa-car-crash"></i>
+
+    
+    <i data-fa-symbol="general-carry" class="fas fa-people-carry"></i>
+    <i data-fa-symbol="general-sim" class="fas fa-sim-card"></i>
+
+    <!-- Blips -->
+    <i data-fa-symbol="blips" class="fas fa-map-marked-alt"></i>    
+    <i data-fa-symbol="blips-gasstations" class="fas fa-gas-pump"></i>
+    <i data-fa-symbol="blips-trainstations" class="fas fa-train"></i>
+    <i data-fa-symbol="blips-garages" class="fas fa-parking"></i>
+    <i data-fa-symbol="blips-barbershop" class="fas fa-cut"></i>
+    <i data-fa-symbol="blips-tattooshop" class="fas fa-pen-fancy"></i>
+
+    <!-- Driving Instructor -->
+    <i data-fa-symbol="drivinginstructor" class="fas fa-taxi"></i>
+    <i data-fa-symbol="drivinginstructor-drivingtest" class="fas fa-clipboard-list"></i>
+    <i data-fa-symbol="drivinginstructor-submittest" class="fas fa-upload"></i>
+
+    <!-- Judge -->
+    <i data-fa-symbol="judge-raid" class="fas fa-flag-usa"></i>
+    <i data-fa-symbol="judge-raid-check-owner" class="fas fa-home"></i>
+    <i data-fa-symbol="judge-raid-seize-all" class="fas fa-hand-middle-finger"></i>
+    <i data-fa-symbol="judge-raid-take-cash" class="fas fa-file-invoice-dollar"></i>
+    <i data-fa-symbol="judge-raid-take-dm" class="fas fa-money-bill"></i>
+    
+    <!-- Cuff -->
+    <i data-fa-symbol="cuffs" class="fas fa-hands"></i>
+    <i data-fa-symbol="cuffs-cuff" class="fas fa-user-lock"></i>
+    <i data-fa-symbol="cuffs-uncuff" class="fas fa-unlink"></i>
+    <i data-fa-symbol="cuffs-remove-mask" class="fas fa-theater-masks"></i>
+    <i data-fa-symbol="cuffs-check-inventory" class="fas fa-mask"></i>
+    <i data-fa-symbol="cuffs-unseat-player" class="fas fa-sign-out-alt"></i>
+    <i data-fa-symbol="cuffs-check-phone" class="fas fa-mobile-alt"></i>
+
+    <!-- EMS -->
+    <i data-fa-symbol="ems-ambulance" class="fas fa-ambulance"></i>
+    <i data-fa-symbol="ems-revive" class="fas fa-syringe"></i>
+    <i data-fa-symbol="ems-bill" class="fas fa-file-invoice"></i>"></i>
+    <i data-fa-symbol="ems-putinveh" class="fas fa-shuttle-van"></i>"></i>
+    <i data-fa-symbol="ems-heal" class="fas fa-stethoscope"></i>"></i>
+    <i data-fa-symbol="ems-med" class="fas fa-wave-square"></i>"></i>
+    <i data-fa-symbol="ems-drag" class="fas fa-user-friends"></i>"></i>
+
+    <!-- Police -->
+    <i data-fa-symbol="police" class="fas fa-shield-alt"></i>
+    <i data-fa-symbol="police-cuff" class="fas fa-user-lock"></i>
+    <i data-fa-symbol="police-uncuff" class="fas fa-unlink"></i>
+    <i data-fa-symbol="police-outofveh" class="fas fa-sign-out-alt"></i>
+    <i data-fa-symbol="police-drag" class="fas fa-user-friends"></i>
+    <i data-fa-symbol="police-mdt" class="fas fa-tablet-alt"></i>
+    <i data-fa-symbol="police-search" class="fab fa-searchengin"></i>
+    <i data-fa-symbol="police-bills" class="fas fa-file-invoice-dollar"></i>
+    <i data-fa-symbol="police-jail" class="fas fa-lock"></i>
+
+
+    <i data-fa-symbol="accessories" class="fab fa-redhat"></i>
+    <i data-fa-symbol="accessories-mask" class="fas fa-theater-masks"></i>
+    <i data-fa-symbol="accessories-glasses" class="fas fa-glasses"></i>
+    <i data-fa-symbol="accessories-helmet" class="fas fa-hard-hat"></i>
+    <i data-fa-symbol="accessories-ears" class="fas fa-assistive-listening-systems"></i>
+
+    <i data-fa-symbol="emotes" class="fas fa-grin-squint-tears"></i>
+    <i data-fa-symbol="emotes-smoke" class="fas fa-smoking"></i>
+    <i data-fa-symbol="emotes-lean" class="fas fa-male"></i>
+    <i data-fa-symbol="emotes-sitchair" class="fas fa-chair"></i>
+    <i data-fa-symbol="emotes-dance" class="fas fa-compact-disc"></i>
+    <i data-fa-symbol="emotes-menu" class="fas fa-bars"></i>
+    <i data-fa-symbol="emotes-surr" class="fas fa-hand-paper"></i>
+
+    <i data-fa-symbol="vehicle" class="fas fa-car"></i>
+    <i data-fa-symbol="vehicle-givekeys" class="fas fa-key"></i>
+    <i data-fa-symbol="vehicle-engine" class="fas fa-heartbeat"></i>
+    <i data-fa-symbol="vehicle-search" class="fas fa-search"></i>
+    <i data-fa-symbol="vehicle-hotw" class="fas fa-charging-station"></i>
+    <i data-fa-symbol="vehicle-callmec" class="fas fa-wrench"></i>
+    <i data-fa-symbol="vehicle-sell" class="fas fa-dollar-sign"></i>
+
+    <i data-fa-symbol="general-cuff" class="fas fa-lock"></i>
+    <i data-fa-symbol="general-uncuff" class="fas fa-lock-open"></i>
+    <i data-fa-symbol="general-search" class="fab fa-searchengin"></i>
+    <i data-fa-symbol="general-carryped" class="fas fa-dolly"></i>
+
+    <i data-fa-symbol="news" class="fas fa-rss"></i>
+    <i data-fa-symbol="news-boom" class="fas fa-microphone-alt"></i>
+    <i data-fa-symbol="news-cam" class="fas fa-video"></i>
+    <i data-fa-symbol="news-mic" class="fas fa-microphone"></i>
+
+    <i data-fa-symbol="mechanic" class="fas fa-screwdriver"></i>
+    <i data-fa-symbol="mechanic-hijack" class="fas fa-crutch"></i>
+    <i data-fa-symbol="mechanic-repair" class="fas fa-tools"></i>
+    <i data-fa-symbol="mechanic-wash" class="fas fa-bath"></i>
+    <i data-fa-symbol="mechanic-impound" class="fas fa-trash"></i>
+    <i data-fa-symbol="mechanic-flatbed" class="fas fa-truck-loading"></i>
+
+    <!-- HTML code -->
+    <div id="container">
+        <div id="navMenu"></div>
+    </div>
+</body>
+
+</html>

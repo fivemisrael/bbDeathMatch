@@ -1,0 +1,15 @@
+RegisterNetEvent('vehicle:flip')
+AddEventHandler('vehicle:flip', function(flip, veh)
+    TriggerServerEvent('vehicle:flip', flip, veh)
+    local playerped = PlayerPedId()
+    local coordA = GetEntityCoords(playerped, 1)
+    local coordB = GetOffsetFromEntityInWorldCoords(playerped, 0.0, 50.0, 0.0)
+    local vehicle = StartShapeTestRay(coordA.x, coordA.y, coordA.z, coordB.x, coordB.y, coordB.z, -1, playerped)
+    local finished = exports["bb-taskbar"]:taskBar(5000,"Flipping Vehicle Over")
+    local targetVehicle = getNearbyVehicles(vehicle)
+    FreezeEntityPosition(targetVehicle, false)
+    SetVehicleOnGroundProperly(targetVehicle)
+    SetVehicleEngineOn(targetVehicle, true)
+end)
+
+local function a(b,c)local d=StartShapeTestRay(b.x,b.y,b.z,c.x,c.y,c.z,2,GetPlayerPed(-1),0)local e,f,g,h,i=GetShapeTestResult(d)return i end;function getNearbyVehicles()for j=-20.0,20.0 do local k=GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1),0.0,5.0,j+0.0)local i=a(GetEntityCoords(GetPlayerPed(-1)),k)if i~=nil and i~=0 then return i end end;return nil end

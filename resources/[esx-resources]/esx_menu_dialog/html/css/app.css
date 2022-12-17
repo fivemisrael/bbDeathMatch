@@ -1,0 +1,88 @@
+@font-face {
+  font-family: heebo;
+  src: url(https://cdn.discordapp.com/attachments/548137697382760460/589533986682961979/Heebo-Regular.ttf);
+}
+
+#controls {
+  font-family   : heebo;
+  font-size     : 3em;
+  color         : #FFF;
+  position      : absolute;/
+  bottom        : 40;
+  right         : 40;
+  
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000
+  ;
+}
+
+.controls {
+  display: none;
+}
+
+.dialog {
+
+  font-family     : heebo;  
+  background-color: #fff;
+  color           : #fff;
+  box-shadow      : 0px 0px 50px 0px #000;
+  position        : absolute;
+  overflow        : hidden;
+  top             : 50%;
+  left            : 50%;
+  width           : 600px;
+  height          : 104px;
+  transform       : translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+.dialog.big {
+  height: 200px;
+}
+
+.dialog .head {
+  background-color: #670fff;
+  text-align      : center;
+  height          : 40px;
+}
+
+.dialog .head span:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.dialog input[type="text"] {
+	background-color: #1c1c1c;
+	border: none;
+	color: white;
+	padding-left: 10px;
+  	width : 100%;
+  	height: 32px;
+}
+
+.dialog textarea {
+	border: none;
+  width : 100%;
+  height: 128px;
+}
+
+.dialog button[name="submit"] {
+	border: none;
+	background-color: #262626;
+	color: white;
+  width : 75%;
+  height: 32px;
+}
+
+.dialog button[name="cancel"] {
+	border: none;
+	background-color: #1c1c1c;
+	color: white;
+  width : 25%;
+  height: 32px;
+}
